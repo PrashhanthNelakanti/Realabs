@@ -1,0 +1,74 @@
+<nav th:fragment="header" class="navbar" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+  <div class="navbar-left">
+    <a th:href="@{/home}" class="navbar-logo">
+      <img src="/images/logo.png" alt="Logo" style="height: 32px; vertical-align: middle;" />
+    </a>
+    <a th:href="@{/saved-search}" class="navbar-item">Saved Search</a>
+    <a th:href="@{/general}" class="navbar-item">General</a>
+    <a th:href="@{/events}" class="navbar-item">Events</a>
+  </div>
+  <!-- center search box with dropdown -->
+  <div class="navbar-center">
+    <div class="search-container dropdown">
+      <input
+              type="text"
+              th:attr="placeholder='Search...'"
+              class="navbar-search"
+              id="searchInput"
+      />
+
+      <!-- dropdown toggle -->
+      <button
+              class="search-dropdown-btn"
+              type="button"
+              id="searchMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+      >
+        All <i class="fa fa-caret-down" aria-hidden="true"></i>
+      </button>
+      <div class="dropdown-menu" aria-labelledby="searchMenuButton">
+        <div class="dropdown-menu" aria-labelledby="searchMenuButton">
+          <a class="dropdown-item" href="#">
+            <i class="fa fa-th-large" aria-hidden="true"></i>
+            All
+          </a>
+          <a class="dropdown-item" href="#">
+            <i class="fa fa-flask"  aria-hidden="true"></i>
+            Experiments
+          </a>
+          <a class="dropdown-item" href="#">
+            <img src="/images/vail.png" class="dropdown-icon-img" alt="Samples Icon" />
+            Samples
+          </a>
+          <a class="dropdown-item" href="#">
+            <i class="fa fa-database" aria-hidden="true"></i>
+            Storage
+          </a>
+        </div>
+      </div>
+
+      <!-- search icon -->
+      <i class="fa fa-search search-icon" aria-hidden="true"></i>
+    </div>
+  </div>
+  <div class="navbar-right">
+    <div class="dropdown">
+      <a href="#" class="dropdown-toggle" id="userMenuLink" data-toggle="dropdown">
+        <span class="user-icon">
+          <i class="fa fa-user-circle" aria-hidden="true"></i>
+          <span th:text="${username}">User</span>
+        </span>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right">
+        <a th:href="@{/logout}" class="dropdown-item">
+          <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
+        </a>
+        <a sec:authorize="hasRole('ADMIN')" th:href="@{/app-setup}" class="dropdown-item">
+          <i class="fa fa-cog" aria-hidden="true"></i> App Setup
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
