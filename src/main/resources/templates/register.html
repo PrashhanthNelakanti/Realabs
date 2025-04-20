@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Register</title>
+  <link rel="stylesheet" th:href="@{/css/login.css}" />
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f5f5f5;
+    }
+    .login-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 350px;
+    }
+    .alert {
+      margin-top: 1rem;
+      padding: 0.5rem;
+      border-radius: 4px;
+    }
+    .alert.error {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+    .alert.success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    .footer-links {
+      margin-top: 1rem;
+      text-align: center;
+    }
+    .footer-links a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<div class="login-card">
+  <h2>Register</h2>
+  <form th:action="@{/register}" method="post">
+    <!-- CSRF token -->
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" placeholder="Your username" required />
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" placeholder="Your password" required />
+
+    <div th:if="${errorMessage}" class="alert error" th:text="${errorMessage}"></div>
+    <div th:if="${successMessage}" class="alert success" th:text="${successMessage}"></div>
+
+    <button type="submit">Register</button>
+  </form>
+  <div class="footer-links">
+    <a th:href="@{/login}">Already have an account? Log In</a>
+  </div>
+</div>
+</body>
+</html>

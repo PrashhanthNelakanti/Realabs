@@ -36,22 +36,36 @@ public class UserService {
     }
 
     public ResponseEntity<UserEntity> addUser(UserEntity user) {
+
+        Set<RoleEntity> incoming = user.getRoles();
+
+        // 2) Prepare a container for the “resolved” (managed) roles
+        Set<RoleEntity> resolved = new HashSet<>();
+
         logger.info("Adding user: {}", user.getUsername());
 
         // Check for existing user
         if (userRepo.findByUsername(user.getUsername()).isPresent()) {
             throw new UserAlreadyExistsException("User already exists: " + user.getUsername());
         }
-        Set<RoleEntity> roles = user.getRoles().stream()
-                .map(role-> roleRepository.findRoleEntitiesByName(role.getName())
-                        .orElseThrow(() -> new RuntimeException("Role not found: " + role)))
-                .collect(Collectors.toSet());
+        if(incoming == null || incoming.isEmpty()){
+            RoleEntity roleEntity = new RoleEntity();
+            roleEntity.setName("ROLE_USER");
+            resolved.add(roleEntity);
+            user.setRoles(resolved);
+            user.setEnabled(true);
+            }
+             incoming = user.getRoles().stream()
+                    .map(role -> roleRepository.findRoleEntitiesByName(role.getName())
+                            .orElseThrow(() -> new RuntimeException("Role not found: " + role)))
+                    .collect(Collectors.toSet());
+
 
         UserEntity userEntity = new UserEntity();
         userEntity.setUsername(user.getUsername());
         userEntity.setPassword(passwordEncoder.encode(user.getPassword()));
         userEntity.setEnabled(user.isEnabled());
-        userEntity.setRoles(roles);
+        userEntity.setRoles(incoming);
 
         // Save to DB
         UserEntity savedUser = userRepo.save(userEntity);
