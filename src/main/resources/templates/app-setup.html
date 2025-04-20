@@ -1,0 +1,23 @@
+<div class="navbar-left">
+  <link rel="stylesheet" th:href="@{/css/login.css}" />
+  <link rel="stylesheet" th:href="@{/css/header.css}" />
+  <link rel="stylesheet" th:href="@{/css/elndetails.css}" />
+  <link rel="stylesheet" th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" />
+  <a th:href="@{/home}" class="navbar-logo">
+    <img src="/images/logo.png" alt="Logo" style="height: 32px; vertical-align: middle;" />
+  </a>
+
+  <div th:if="${isAppSetup}">
+    <a th:href="@{/user-management}" class="navbar-item">User Management</a>
+    <a th:href="@{/group-management}" class="navbar-item">Group Management</a>
+    <a th:href="@{/session-management}" class="navbar-item">Session Management</a>
+    <a th:href="@{/data-designer}" class="navbar-item">Data Designer</a>
+    <a th:href="@{/list-manager}" class="navbar-item">List Manager</a>
+  </div>
+
+  <div th:unless="${isAppSetup}">
+    <a th:href="@{/saved-search}" class="navbar-item">Saved Search</a>
+    <a th:href="@{/general}" class="navbar-item">General</a>
+    <a th:href="@{/events}" class="navbar-item">Events</a>
+  </div>
+</div>

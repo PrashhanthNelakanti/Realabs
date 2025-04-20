@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.p3h.realabs</groupId>
 	<artifactId>eln</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.1.0-SNAPSHOT</version>
 	<name>eln</name>
 	<description>ELN [Electronic Lab NoteBook] powered by realabs</description>
 	<url/>
