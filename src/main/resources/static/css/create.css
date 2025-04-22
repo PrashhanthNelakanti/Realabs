@@ -1,0 +1,96 @@
+/* reset basics */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    color: #333;
+}
+
+/* NAVBAR + DROPDOWN */
+nav.create-nav {
+    background: #F26456;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.entity-dropdown {
+    font-size: 1rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: none;
+    max-width: 240px;
+    width: 100%;
+}
+
+/* VISIBILITY CONTROL */
+.entity-form {
+    display: none;  /* all hidden by default */
+    background: #fff;
+    padding: 1.5rem;
+    margin: 2rem auto;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    max-width: 600px;
+}
+
+/* FORM STYLING */
+.entity-form h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 0.5rem;
+}
+
+.entity-form form {
+    display: grid;
+    gap: 1rem;
+}
+
+.entity-form label {
+    font-weight: bold;
+}
+
+.entity-form input[type="text"],
+.entity-form input[type="date"],
+.entity-form input[type="number"],
+.entity-form textarea,
+.entity-form select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.entity-form textarea {
+    resize: vertical;
+}
+
+.entity-form button {
+    align-self: start;
+    padding: 0.6rem 1.2rem;
+    background: #F26456;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.entity-form button:hover {
+    background: #db382a;
+}
+
+/* ACCESSIBILITY: hide label text but keep for screen‑readers */
+.sr-only {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}

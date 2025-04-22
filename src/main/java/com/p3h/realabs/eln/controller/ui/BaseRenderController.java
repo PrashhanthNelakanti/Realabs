@@ -1,4 +1,4 @@
-package com.p3h.realabs.eln.controller;
+package com.p3h.realabs.eln.controller.ui;
 
 import com.p3h.realabs.eln.exceptions.UserAlreadyExistsException;
 import com.p3h.realabs.eln.model.UserEntity;
@@ -14,13 +14,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.security.Principal;
 
 @Controller
-public class HomeController {
 
-  private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+public class BaseRenderController {
+
+  private static final Logger logger = LoggerFactory.getLogger(BaseRenderController.class);
 
   private final UserService userService;
 
-  public HomeController(UserService userService) {
+  public BaseRenderController(UserService userService) {
     this.userService = userService;
   }
   @GetMapping("/login")

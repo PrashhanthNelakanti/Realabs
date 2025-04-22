@@ -59,12 +59,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf()
                 .ignoringAntMatchers("/api/users") // Disable CSRF for this endpoint
+                .ignoringAntMatchers("/experiments") // Disable CSRF for this endpoint
                 .and()
                 .addFilterBefore(new AuthLoggingFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/users").permitAll() // Public registration
                 .antMatchers(HttpMethod.GET, "/register").permitAll()
                 .antMatchers(HttpMethod.POST, "/register").permitAll() // Public registration
+                .antMatchers(HttpMethod.POST, "/experiments").permitAll() // Public registration
+                .antMatchers(HttpMethod.POST, "/").permitAll() // Public registration
                 .antMatchers("/login", "/css/**", "/js/**", "/images/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
